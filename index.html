@@ -61,6 +61,17 @@
     .brand span { color: var(--muted); font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; }
     .navlinks { display: flex; gap: 20px; color: var(--body); font-size: .92rem; }
     .navlinks a:hover { color: var(--jjok); }
+    .mobile-menu { display:none; position:relative; }
+    .mobile-menu summary { display:flex; align-items:center; gap:12px; min-height:44px; padding:7px 12px; border:1px solid var(--line); border-radius:2px; background:#fff; cursor:pointer; font-weight:750; list-style:none; }
+    .mobile-menu summary::-webkit-details-marker { display:none; }
+    .mobile-menu summary::after { content:"☰"; font-size:1.2rem; line-height:1; }
+    .mobile-menu[open] summary::after { content:"×"; font-size:1.45rem; }
+    .mobile-menu-links { position:absolute; top:calc(100% + 10px); right:0; width:min(320px,calc(100vw - 26px)); padding:8px; background:#fff; border:1px solid var(--line); box-shadow:0 16px 38px rgba(0,0,0,.13); z-index:30; }
+    .mobile-menu-links a { display:block; min-height:46px; padding:11px 14px; border-bottom:1px solid var(--line); font-weight:650; }
+    .mobile-menu-links a:last-child { border-bottom:0; }
+    .mobile-menu-links a:hover, .mobile-menu-links a:focus-visible { background:var(--surface); color:var(--jjok); }
+    .mobile-menu summary:focus-visible, .navlinks a:focus-visible, .btn:focus-visible { outline:3px solid var(--jjok); outline-offset:3px; }
+    :target { scroll-margin-top:90px; }
 
     .hero {
       min-height: 760px;
@@ -156,6 +167,11 @@
     .cred .cred-year { display:block; margin-bottom:8px; color:var(--jjok); font-size:.76rem; font-weight:850; letter-spacing:.08em; }
     .cred b { display:block; margin-bottom:6px; line-height:1.35; }
     .cred span { color:var(--muted); font-size:.9rem; }
+    .recognitions { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; margin-top:34px; }
+    .recognition { padding:24px; border:1px solid var(--line); background:var(--surface); }
+    .recognition .kicker { display:block; margin-bottom:10px; color:var(--jjok); font-size:.78rem; font-weight:850; letter-spacing:.08em; }
+    .recognition h3 { margin:0 0 8px; font-size:1.15rem; line-height:1.4; }
+    .recognition p { margin:0; color:var(--muted); font-size:.91rem; }
     .talks { margin-top:46px; border-top:1px solid var(--line-dark); }
     .talks-head { margin:0; padding:28px 0 8px; font-size:1rem; letter-spacing:.02em; color:var(--jjok-light); }
     .talk { display:grid; grid-template-columns:110px 1fr; gap:22px; padding:18px 0; border-bottom:1px solid var(--line-dark); }
@@ -172,6 +188,7 @@
 
     @media (max-width: 850px) {
       .navlinks { display:none; }
+      .mobile-menu { display:block; }
       .hero { min-height:auto; }
       .hero-grid { grid-template-columns:1fr; padding-top:80px; }
       .hero-card { max-width:560px; }
@@ -185,6 +202,8 @@
     @media (max-width: 540px) {
       .wrap { width:min(calc(100% - 26px), var(--max)); }
       nav { min-height:62px; }
+      .brand span { display:none; }
+      .recognitions { grid-template-columns:1fr; }
       h1 { font-size:2.7rem; }
       .hero-grid { padding:68px 0 58px; gap:38px; }
       section { padding:80px 0; }
@@ -213,6 +232,17 @@
           <a href="#experience">Experience</a>
           <a href="#contact">Contact</a>
         </div>
+        <details class="mobile-menu" id="mobile-menu">
+          <summary>메뉴</summary>
+          <div class="mobile-menu-links">
+            <a href="#about">소개</a>
+            <a href="#classroom">수업 이야기</a>
+            <a href="#build">교육도구</a>
+            <a href="#teach">강연 · 나눔</a>
+            <a href="#experience">경력 · 수상</a>
+            <a href="#contact">연락처</a>
+          </div>
+        </details>
       </nav>
     </div>
   </header>
@@ -331,10 +361,10 @@
             <div class="buttons"><a class="btn primary" href="https://hischarlie.tistory.com/" target="_blank" rel="noopener">블로그 방문하기 ↗</a></div>
           </div>
           <div class="recent-posts" aria-label="찰리쌤의 스마트 교무실 최근 글">
-            <div class="recent-posts-head"><b>SELECTED POSTS</b><span>수업 · 기록 · 도구</span></div>
-            <a class="recent-post" href="https://hischarlie.tistory.com/166" target="_blank" rel="noopener"><time>08.09</time><b>석 달 동안 쌓인 1,785개의 질문, 그 시작은 수업 설계였습니다</b><span class="go">↗</span></a>
-            <a class="recent-post" href="https://hischarlie.tistory.com/167" target="_blank" rel="noopener"><time>08.13</time><b>내 수업을 기자들은 어떻게 읽었을까 — 언론 보도 9건을 읽고 남기는 기록</b><span class="go">↗</span></a>
+            <div class="recent-posts-head"><b>SELECTED POSTS</b><span>최근 글 · 대표 수업</span></div>
             <a class="recent-post" href="https://hischarlie.tistory.com/171" target="_blank" rel="noopener"><time>08.28</time><b>평가계획서 HWPX, 과목별로 자동 분할하고 다시 합치기</b><span class="go">↗</span></a>
+            <a class="recent-post" href="https://hischarlie.tistory.com/170" target="_blank" rel="noopener"><time>08.22</time><b>평가계획서 검사기 업데이트 — 수행평가 시기부터 학년 전체 합본까지 검사합니다</b><span class="go">↗</span></a>
+            <a class="recent-post" href="https://hischarlie.tistory.com/166" target="_blank" rel="noopener"><time>08.09</time><b>석 달 동안 쌓인 1,785개의 질문, 그 시작은 수업 설계였습니다</b><span class="go">↗</span></a>
           </div>
         </div>
       </div>
@@ -359,7 +389,8 @@
           <div class="talk"><time>2026. 07–08</time><div><b>AI 선도교원 양성 연수 1권역 · 강사</b><span>인공지능 활용 수업 설계 및 실천 연수</span></div></div>
           <div class="talk"><time>2026. 08</time><div><b>한국교육학술정보원(KERIS) · 2026 AI 활용 교육 콘퍼런스</b><span>AI 피드백을 활용한 질문 중심 한국사 수업 사례 발표</span></div></div>
           <div class="talk"><time>2026. 08</time><div><b>천재교과서 · 역사 수행평가 박람회</b><span>에듀테크와 AI를 활용한 수행평가 시스템 사례 나눔</span></div></div>
-          <div class="talk"><time>2026. 10</time><div><b>교보교육재단 · 2026 교육 심포지엄</b><span>학교 현장의 생성형 AI 활용 사례발제 · 예정</span></div></div>
+          <div class="talk"><time>2026. 09–10</time><div><b>학교 현장 맞춤형 AI 활용 연수</b><span>송호고 · 상록고 · 권선중 등 교사 대상 실습 중심 연수</span></div></div>
+          <div class="talk"><time>2026. 10. 23</time><div><b>교보교육재단 · 2026 교육 심포지엄</b><span>생성형 AI와 질문 중심 역사수업 사례발제</span></div></div>
         </div>
         <div class="tags" style="margin-top:32px"><span class="tag">교내 연수</span><span class="tag">교육청·교육기관 연수</span><span class="tag">생성형 AI</span><span class="tag">질문 중심 수업</span><span class="tag">수업·평가</span><span class="tag">업무자동화</span></div>
       </div>
@@ -378,6 +409,10 @@
           <div class="tl"><time>2016. 3. – 2018. 2.</time><div><h3>여주자영농업고등학교 · 교사</h3><p>특성화고 학생의 현재와 역사를 연결하기 위한 수업 순서와 구성을 실험했습니다.</p></div></div>
           <div class="tl"><time>2018. 3. – 2024. 2.</time><div><h3>금광중학교 · 교사</h3><p>지역사 탐구·홍보 활동과 지역 근현대사 교육 자료 개발 경험을 쌓았습니다.</p></div></div>
           <div class="tl"><time>2024. 3. – 현재</time><div><h3>복정고등학교 · 역사교사</h3><p>질문 탐구 프로젝트, AI 활용 탐구수업, 웹 기반 역사수업 자료와 교사업무 도구를 개발·적용하고 있으며, 2026 교육부 역사 선도교사단으로 역사 수업 자료 개발과 현장 사례 공유에 참여하고 있습니다.</p></div></div>
+        </div>
+        <div class="recognitions" aria-label="2026년 주요 수상 및 선정">
+          <article class="recognition"><span class="kicker">2026. 10 · 우수상 선정</span><h3>지식샘터 수업사례 공모전 · 중등 우수상</h3><p>「지식샘터가 찾는 그 수업? It's Me!」</p></article>
+          <article class="recognition"><span class="kicker">2026. 10 · 현장지원단 선정</span><h3>안산교육지원청 ONE-TECH 현장지원단</h3><p>2026 ONE-TECH 현장지원단 선정</p></article>
         </div>
         <div class="credentials">
           <div class="cred"><span class="cred-year">2026~현재</span><b>교육부 역사 선도교사단</b><span>역사 수업·평가 지원자료 개발 · 연수 지원</span></div>
@@ -410,6 +445,24 @@
   <footer>
     <div class="wrap footer-row"><span>© 2026 Lee Myungchul.</span><span>History · Questions · AI · 찰리쌤의 스마트 교무실</span></div>
   </footer>
-  <!-- profile version 1.3.1 -->
+  <script>
+    // Close the responsive menu after navigation, on Escape, or on outside click.
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileMenu) {
+      mobileMenu.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener('click', () => { mobileMenu.open = false; });
+      });
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && mobileMenu.open) {
+          mobileMenu.open = false;
+          mobileMenu.querySelector('summary').focus();
+        }
+      });
+      document.addEventListener('click', event => {
+        if (mobileMenu.open && !mobileMenu.contains(event.target)) mobileMenu.open = false;
+      });
+    }
+  </script>
+  <!-- profile version 1.4.0 -->
 </body>
 </html>
