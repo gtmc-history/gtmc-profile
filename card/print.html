@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>GTMC 명함 v2.1 | 90×50mm 인쇄용 앞·뒷면</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700&family=Gothic+A1:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#fff;--ink:#161616;--indigo:#2A4A7F}
+*{box-sizing:border-box}
+body{margin:0;color:var(--ink);background:#efefec;font-family:"Gothic A1","Noto Sans KR",sans-serif}
+a{color:var(--indigo)}
+.header{max-width:1000px;margin:35px auto 18px;padding:0 20px}
+.header h1{font-size:23px;margin:0 0 7px}
+.header p{font-size:13px;line-height:1.8;color:#484848;margin:0 0 14px}
+.print-btn{cursor:pointer;padding:12px 20px;background:var(--ink);color:#fff;border:0;border-radius:0;font:700 14px "Gothic A1",sans-serif}
+.layout{display:flex;gap:30px;flex-wrap:wrap;max-width:1000px;margin:0 auto;padding:10px 20px 48px}
+.frame{width:90mm;height:50mm;position:relative;padding:6mm;background:#fff;border:0;border-radius:0;box-shadow:none;overflow:hidden}
+.wordmark{display:flex;align-items:baseline;font-family:Archivo,Arial,sans-serif;font-size:14mm;font-weight:700;line-height:.8;white-space:nowrap;letter-spacing:0}
+.wordmark span:nth-child(1){margin-right:-.05em}
+.wordmark span:nth-child(2){margin-right:-.04em}
+.wordmark span:nth-child(3){margin-right:-.01em}
+.front{display:flex;flex-direction:column;justify-content:flex-end;gap:2.35mm}
+.slogan{font-size:2.5mm;font-weight:500;color:var(--indigo);line-height:1.65;white-space:nowrap}
+.back{display:flex;flex-direction:column;justify-content:space-between}
+.name{font-size:5.67mm;font-weight:700;line-height:1;letter-spacing:.02em}
+.role{font-size:2.33mm;font-weight:500;color:#4a4a4a;margin-top:1.67mm}
+.contact-row{display:flex;justify-content:space-between;align-items:flex-end;gap:3mm}
+.contacts{font-size:2.17mm;font-weight:400;line-height:1.82;white-space:nowrap}
+.contacts strong{color:var(--indigo);font-weight:700}
+.qr{width:14mm;height:14mm;display:block;flex:none;image-rendering:pixelated}
+.label{font-size:12px;color:#555;margin-top:10px}
+.label strong{color:#161616}
+.item{display:flex;flex-direction:column}
+.note{max-width:1000px;padding:0 20px 40px;margin:0 auto;font-size:13px;line-height:1.8;color:#4a4a4a}
+.font-status{color:#555}
+@page{size:90mm 50mm;margin:0}
+@media print{
+  html,body{width:90mm!important;margin:0!important;background:#fff!important}
+  .header,.note,.label{display:none!important}
+  .layout{display:block!important;margin:0!important;padding:0!important;width:90mm!important;max-width:none!important}
+  .item{display:block!important;page-break-after:always;break-after:page}
+  .item:last-child{page-break-after:auto;break-after:auto}
+  .frame{display:flex!important;width:90mm!important;height:50mm!important;box-shadow:none!important;margin:0!important;overflow:hidden!important}
+  .front,.back{display:flex!important}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+@media(max-width:420px){.header{margin-top:20px}.layout{padding-left:10px;padding-right:10px}}
+</style>
+</head>
+<body>
+<div class="header">
+<h1>GTMC 명함 · 최종안 v2.1</h1>
+<p>확정 기준: Archivo Bold (K3 자간) · Gothic A1 · 흰색 #FFFFFF · 먹색 #161616 · 쪽빛 #2A4A7F<br>
+90×50mm 양면 인쇄용. 인쇄 대화상자에서 <strong>배율 100%, 여백 없음, 배경 그래픽 사용</strong>을 선택하세요.</p>
+<button type="button" class="print-btn" onclick="window.print()">실물 크기로 인쇄 / PDF 저장</button>
+<p class="font-status" id="font-status" aria-live="polite">글꼴 확인 중…</p>
+</div>
+<main class="layout">
+<section class="item" aria-label="명함 앞면">
+  <div class="frame front">
+    <div class="wordmark" aria-label="GTMC"><span>G</span><span>T</span><span>M</span><span>C</span></div>
+    <div class="slogan">질문이 자라는 교실을 만듭니다.</div>
+  </div>
+  <p class="label"><strong>앞면</strong> · 브랜드 워드마크</p>
+</section>
+<section class="item" aria-label="명함 뒷면">
+  <div class="frame back">
+    <div>
+      <div class="name">이명철</div>
+      <div class="role">역사교사 · 찰리쌤</div>
+    </div>
+    <div class="contact-row">
+      <div class="contacts">
+        <div>010-6441-3670</div>
+        <div>gtmc@gtmc.kr</div>
+        <div><strong>gtmc.kr</strong></div>
+      </div>
+      <img class="qr" src="./qr.svg" width="84" height="84" alt="gtmc.kr/card QR 코드">
+    </div>
+  </div>
+  <p class="label"><strong>뒷면</strong> · 실명·연락처·QR</p>
+</section>
+</main>
+<p class="note">디자인은 업로드된 ‘최종안 v2.1’ 참고 HTML의 수치와 배치를 기준으로 재구성했습니다. 오른쪽 QR은 실제 연결 주소 <a href="https://gtmc.kr/card">gtmc.kr/card</a>로 연결됩니다. 브라우저가 Archivo 또는 Gothic A1을 불러오지 못한 상태에서는 대체 글꼴로 표시되므로 인쇄 전에 글꼴 상태를 확인해 주세요.</p>
+<script>
+(async function(){
+const out=document.getElementById('font-status');
+try {
+ await document.fonts.ready;
+ await Promise.all([document.fonts.load('700 30px Archivo'),document.fonts.load('500 14px "Gothic A1"')]);
+ const a=document.fonts.check('700 30px Archivo');
+ const g=document.fonts.check('500 14px "Gothic A1"');
+ out.textContent=a&&g?'글꼴 로드 완료: Archivo / Gothic A1':'글꼴 확인 필요 — 웹폰트가 로드되지 않았을 수 있습니다.';
+ out.style.color=a&&g?'#2A4A7F':'#a04015';
+}catch(err){out.textContent='글꼴을 불러오지 못했습니다. 인터넷 연결을 확인해 주세요.';out.style.color='#a04015'}
+})();
+</script>
+</body>
+</html>
