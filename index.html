@@ -218,6 +218,12 @@
       .talk { grid-template-columns:1fr; gap:4px; }
     }
 
+    /* Keep navigation readable on tablets and small laptops. */
+    @media (max-width:1100px) {
+      .navlinks { display:none; }
+      .mobile-menu { display:block; }
+      .brand span { display:none; }
+    }
     /* GTMC EDITORIAL 2.0: shared tokens with /card */
     :root { --ink:#111111; --paper:#f7f7f4; --surface:#ededeb; --jjok:#2446e8; --jjok-deep:#172a83; --jjok-light:#a9baff; --jjok-pale:#d6ddff; }
     body { letter-spacing:-.012em; }
