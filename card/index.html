@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#151515">
+  <title>디지털 명함 | 이명철 · 찰리쌤</title>
+  <meta name="description" content="복정고등학교 역사교사 이명철의 디지털 명함. 연락처를 저장하거나 상세 소개와 수업 사례를 확인할 수 있습니다.">
+  <link rel="canonical" href="https://gtmc.kr/card">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="이명철 · 찰리쌤 | 디지털 명함">
+  <meta property="og:description" content="질문이 자라는 교실을 만듭니다. 역사수업 · 질문 · AI · 교육도구">
+  <meta property="og:url" content="https://gtmc.kr/card">
+  <meta property="og:image" content="https://gtmc.kr/og-profile.png">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <style>
+    :root { color-scheme: light; --ink:#151515; --blue:#2b4a9b; --muted:#61666e; --border:#d9dade; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; background:#f2f3f5; color:var(--ink); font-family:Pretendard,"Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif; }
+    main { max-width:570px; margin:auto; padding:22px 18px 50px; }
+    h1 { margin:0; font-size:1px; position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
+    .card-wrap { overflow:hidden; border:1px solid #e5e5e6; background:#fff; box-shadow:0 12px 38px rgba(0,0,0,.10); }
+    .card-image { display:block; width:100%; height:auto; }
+    .actions { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:16px; }
+    .action { display:flex; justify-content:center; align-items:center; min-height:54px; gap:7px; padding:11px 12px; border:1px solid var(--border); background:#fff; color:var(--ink); font:inherit; font-size:.98rem; font-weight:750; text-decoration:none; cursor:pointer; text-align:center; border-radius:3px; }
+    .action.primary { background:var(--ink); border-color:var(--ink); color:#fff; }
+    .action:hover { border-color:var(--blue); color:var(--blue); }
+    .action.primary:hover { background:var(--blue); color:#fff; }
+    .action:focus-visible { outline:3px solid var(--blue); outline-offset:3px; }
+    .action.full { grid-column:1 / -1; }
+    .explain { color:var(--muted); font-size:.84rem; line-height:1.7; text-align:center; margin:16px 5px 0; }
+    footer { text-align:center; color:var(--muted); font-size:.8rem; margin-top:27px; }
+    footer a { color:inherit; }
+    @media (min-width:750px) { main { padding-top:42px; } }
+    @media (max-width:380px) { main { padding:12px 10px 28px; } .actions { gap:8px; } .action { font-size:.88rem; } }
+    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>이명철 · 찰리쌤 디지털 명함</h1>
+    <div class="card-wrap">
+      <img class="card-image" src="./card.svg" alt="이명철, 복정고등학교 역사교사. 질문이 자라는 교실을 만듭니다. 전화 010-6441-3670, 이메일 gtmc@gtmc.kr, 웹사이트 gtmc.kr." width="1080" height="1920">
+    </div>
+    <nav class="actions" aria-label="명함 활용 메뉴">
+      <a class="action primary" href="https://gtmc.kr/" rel="home">상세 소개 보기 ↗</a>
+      <a class="action" href="./card.svg" download="lee-myungchul-card.svg" id="download-image">명함 이미지 저장 ↓</a>
+      <a class="action full" href="../lee_myungchul.vcf" download="lee_myungchul.vcf">연락처 저장 ↓</a>
+    </nav>
+    <p class="explain">이미지는 PNG로 저장할 수 있습니다. 휴대폰에서는 명함 이미지를 길게 눌러 저장해도 됩니다. 연락처 저장을 선택하면 휴대전화 주소록에 이름과 전화번호·이메일을 등록할 수 있습니다.</p>
+    <footer>History · Questions · AI &nbsp;·&nbsp; <a href="https://gtmc.kr/">gtmc.kr</a></footer>
+  </main>
+  <script>
+    (function () {
+      const save = document.getElementById('download-image');
+      save.addEventListener('click', async function (event) {
+        event.preventDefault();
+        const oldLabel = save.textContent;
+        save.textContent = '이미지 준비 중…';
+        save.setAttribute('aria-busy','true');
+        try {
+          const image = new Image();
+          image.decoding = 'async';
+          image.src = new URL('./card.svg', location.href).href;
+          await new Promise((resolve,reject) => { image.onload = resolve; image.onerror = reject; if(image.complete && image.naturalWidth) resolve(); });
+          const canvas = document.createElement('canvas');
+          canvas.width = 1080; canvas.height = 1920;
+          const ctx = canvas.getContext('2d');
+          if (!ctx) throw new Error('Canvas unavailable');
+          ctx.fillStyle = '#fff'; ctx.fillRect(0,0,canvas.width,canvas.height);
+          ctx.drawImage(image,0,0,canvas.width,canvas.height);
+          const blob = await new Promise(resolve => canvas.toBlob(resolve,'image/png'));
+          if (!blob) throw new Error('PNG conversion unavailable');
+          const url = URL.createObjectURL(blob);
+          const link = document.createElement('a');
+          link.href = url;
+          link.download = 'lee-myungchul-digital-card.png';
+          document.body.appendChild(link);
+          link.click(); link.remove();
+          setTimeout(() => URL.revokeObjectURL(url), 30000);
+        } catch (err) {
+          // SVG is always available as a crisp, downloadable image fallback.
+          const link = document.createElement('a');
+          link.href = './card.svg'; link.download = 'lee-myungchul-digital-card.svg';
+          document.body.appendChild(link); link.click(); link.remove();
+        } finally {
+          save.textContent = oldLabel;
+          save.removeAttribute('aria-busy');
+        }
+      });
+    }());
+  </script>
+</body>
+</html>
