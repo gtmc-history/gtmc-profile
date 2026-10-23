@@ -217,6 +217,67 @@
       .topic { grid-template-columns:48px 1fr; gap:12px; }
       .talk { grid-template-columns:1fr; gap:4px; }
     }
+
+    /* GTMC EDITORIAL 2.0: shared tokens with /card */
+    :root { --ink:#111111; --paper:#f7f7f4; --surface:#ededeb; --jjok:#2446e8; --jjok-deep:#172a83; --jjok-light:#a9baff; --jjok-pale:#d6ddff; }
+    body { letter-spacing:-.012em; }
+    .brand { font-family:"Noto Serif KR","Batang",serif; font-size:1.25rem; }
+    .brand span { font-family:Pretendard,system-ui,sans-serif; }
+    nav { min-height:76px; }
+    .navlinks { gap:17px; font-size:.83rem; font-weight:650; }
+    .navlinks a:last-child { color:var(--jjok); font-weight:850; }
+    .hero { min-height:670px; position:relative; overflow:hidden; }
+    .hero::before { content:""; display:block; position:absolute; right:13%; top:-105px; height:370px; width:2px; background:var(--jjok); transform:rotate(39deg); pointer-events:none; }
+    .hero-grid { grid-template-columns:1.42fr .58fr; padding:96px 0 84px; gap:68px; }
+    h1 { font-size:clamp(3.2rem,5.85vw,6rem); font-weight:700; letter-spacing:-.07em; line-height:1.16; }
+    h1 .sub { margin-top:0; }
+    h2 { font-weight:700; letter-spacing:-.068em; line-height:1.23; }
+    .eyebrow { letter-spacing:.19em; font-size:.75rem; }
+    .hero-copy { max-width:625px; line-height:1.85; font-size:1.11rem; }
+    .hero-name { margin-top:24px; }
+    .buttons { gap:9px; }
+    .btn { min-height:50px; border-radius:0; padding:0 17px; font-size:.88rem; }
+    .btn.primary { background:var(--ink); color:#fff; }
+    .btn.primary:hover { background:var(--jjok); }
+    .hero-stat { grid-template-columns:106px 1fr; gap:14px; padding:21px 0; }
+    .hero-stat strong { font-size:2.02rem; font-weight:700; }
+    .hero-card-label { letter-spacing:.12em; }
+    section { padding:94px 0; }
+    .section-no { font-weight:850; }
+    .card { border-radius:0; min-height:245px; transition:transform .2s ease, border-color .2s ease; }
+    .link-card:hover { transform:translateY(-4px); }
+    .selected-work { background:var(--surface); }
+    .featured-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
+    .featured { min-height:420px; color:#fff; padding:30px; display:flex; flex-direction:column; justify-content:space-between; overflow:hidden; position:relative; }
+    .featured-blue { background:var(--jjok); }
+    .featured-dark { background:#111; }
+    .featured::after { content:""; position:absolute; height:230px; width:2px; background:rgba(255,255,255,.6); top:-35px; right:65px; transform:rotate(42deg); }
+    .featured-top { display:flex;justify-content:space-between;gap:10px;font-weight:820;font-size:.72rem;letter-spacing:.14em; }
+    .featured-top span:last-child { font-size:1.55rem; line-height:.9; }
+    .featured h3 { font-family:"Noto Serif KR",serif;font-size:clamp(2.4rem,4.1vw,4.25rem);letter-spacing:-.07em;line-height:1.22;margin:0 0 18px;font-weight:700; }
+    .featured h3 .highlight { color:#9db1ff; }
+    .featured p { color:rgba(255,255,255,.85);max-width:405px;margin:0;line-height:1.8; }
+    .featured-bottom { border-top:1px solid rgba(255,255,255,.4);padding-top:16px;font-size:.85rem;font-weight:750; }
+    .featured:hover .featured-bottom { text-decoration:underline; text-underline-offset:5px; }
+    .contact .buttons { max-width:680px; margin-left:auto; margin-right:auto; }
+    @media(max-width:850px) {
+      .hero::before { right:10%;top:-160px; }
+      .hero-grid { grid-template-columns:1fr;gap:48px; }
+      .hero { min-height:auto; }
+      .featured { min-height:355px; padding:24px; }
+    }
+    @media(max-width:620px) {
+      .featured-grid { grid-template-columns:1fr; }
+      .featured { min-height:330px; }
+      section { padding:72px 0; }
+      .hero-grid { padding:68px 0 68px; }
+      h1 { font-size:clamp(2.7rem,11vw,4.4rem); }
+      .hero .buttons .btn { width:100%;justify-content:center; }
+    }
+    @media(prefers-reduced-motion:reduce) {
+      .card,.link-card { transition:none; }
+      .link-card:hover { transform:none; }
+    }
   </style>
 </head>
 <body>
@@ -228,9 +289,11 @@
           <a href="#about">About</a>
           <a href="#classroom">Classroom</a>
           <a href="#build">Build</a>
+          <a href="#selected">Selected Works</a>
           <a href="#teach">Teach & Share</a>
           <a href="#experience">Experience</a>
           <a href="#contact">Contact</a>
+          <a href="./card/">Digital Card ↗</a>
         </div>
         <details class="mobile-menu" id="mobile-menu">
           <summary>메뉴</summary>
@@ -238,9 +301,11 @@
             <a href="#about">소개</a>
             <a href="#classroom">수업 이야기</a>
             <a href="#build">교육도구</a>
+            <a href="#selected">대표 프로젝트</a>
             <a href="#teach">강연 · 나눔</a>
             <a href="#experience">경력 · 수상</a>
             <a href="#contact">연락처</a>
+            <a href="./card/">디지털 명함 ↗</a>
           </div>
         </details>
       </nav>
@@ -256,15 +321,15 @@
           <p class="hero-copy">학생이 스스로 질문하고, 탐구하고, 판단하는 역사 수업을 설계합니다. 그리고 교실과 교무실에 필요한 도구는 직접 만듭니다.</p>
           <div class="hero-name">이명철 · 역사교사<small>Lee Myungchul · History Educator · 복정고등학교 · 찰리쌤</small></div>
           <div class="buttons">
-            <a class="btn primary" href="#classroom">수업 이야기 보기</a>
-            <a class="btn ghost" href="#build">만든 도구 보기</a>
-            <a class="btn ghost" href="https://hischarlie.tistory.com/" target="_blank" rel="noopener">스마트 교무실 ↗</a>
+            <a class="btn primary" href="#selected">대표 프로젝트 보기 ↗</a>
+            <a class="btn ghost" href="mailto:gtmc@gtmc.kr?subject=%EA%B0%95%EC%97%B0%C2%B7%ED%98%91%EC%97%85%20%EB%AC%B8%EC%9D%98">강연 · 협업 문의 ↗</a>
+            <a class="btn ghost" href="./card/">디지털 명함 ↗</a>
           </div>
         </div>
         <aside class="hero-card" aria-label="대표 수업과 제작 활동 기록">
-          <p class="hero-card-label">SELECTED RECORDS</p>
+          <p class="hero-card-label">IN PRACTICE / SELECTED RECORDS</p>
           <div class="hero-stats">
-            <div class="hero-stat"><strong>1,785</strong><div><b>학생 질문 기록</b><span>2026 상반기 대표 수업 사례</span></div></div>
+            <div class="hero-stat"><strong>1,240</strong><div><b>유효 학생 질문 기록</b><span>2026년 4~6월 정제된 질문 데이터</span></div></div>
             <div class="hero-stat"><strong>23+</strong><div><b>역사 게임·활동</b><span>직접 개발·공개</span></div></div>
             <div class="hero-stat"><strong>2016~</strong><div><b>역사교사</b><span>수업 · 연구 · 나눔</span></div></div>
           </div>
@@ -333,10 +398,32 @@
       </div>
     </section>
 
+    <section id="selected" class="selected-work" aria-label="대표 프로젝트">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-no">03 / SELECTED WORKS</div>
+          <div><h2>교실에서 시작한 질문을<br><span style="color:var(--jjok)">실제로 작동하는 수업으로.</span></h2>
+          <p class="lead">학생이 질문을 만들고, 자료를 비교하고, 자신의 판단을 수정하는 경험을 직접 설계하고 공유합니다.</p></div>
+        </div>
+        <div class="featured-grid">
+          <a class="featured featured-blue" href="https://hischarlie.tistory.com/166" target="_blank" rel="noopener">
+            <div class="featured-top"><span>01 / QUESTION INQUIRY</span><span>↗</span></div>
+            <div><h3>질문이<br>자라는 교실.</h3><p>1,240개 유효 질문 기록에서 질문 생성·개선·탐구의 과정을 살펴봅니다.</p></div>
+            <span class="featured-bottom">질문 중심 한국사 수업 사례 보기</span>
+          </a>
+          <a class="featured featured-dark" href="https://gtmc-history.github.io/games/newsroom1945/" target="_blank" rel="noopener">
+            <div class="featured-top"><span>02 / HISTORY LEARNING GAME</span><span>↗</span></div>
+            <div><h3>NEWSROOM<br>1945<span class="highlight">.</span></h3><p>역사적 사건을 보도하는 경험을 통해 자료와 표현의 책임을 따져봅니다.</p></div>
+            <span class="featured-bottom">역사 뉴스룸 게임 체험하기</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
     <section id="build" class="dark">
       <div class="wrap">
         <div class="section-head">
-          <div class="section-no">03 / BUILD</div>
+          <div class="section-no">04 / BUILD</div>
           <div>
             <h2>필요한 도구가 없으면<br>직접 만듭니다.</h2>
             <p class="lead">학생의 참여를 돕는 웹게임부터 질문 피드백 시스템, 반복되는 교사업무를 줄이는 자동화 도구까지 교실의 실제 문제에서 출발합니다. <strong>업무는 AI에게, 시간은 학생에게.</strong></p>
@@ -373,7 +460,7 @@
     <section id="teach" class="dark">
       <div class="wrap">
         <div class="section-head">
-          <div class="section-no">04 / TEACH & SHARE</div>
+          <div class="section-no">05 / TEACH & SHARE</div>
           <div>
             <h2>교실에서 해본 것만<br>이야기합니다.</h2>
             <p class="lead">학교와 교육기관에서 생성형 AI, 질문 중심 수업, 수업·평가 설계, 교육도구 제작을 주제로 교사들과 경험을 나눕니다.</p>
@@ -399,7 +486,7 @@
     <section id="experience">
       <div class="wrap">
         <div class="section-head">
-          <div class="section-no">05 / EXPERIENCE</div>
+          <div class="section-no">06 / EXPERIENCE</div>
           <div>
             <h2>학교급이 달라도<br>질문은 같았습니다.</h2>
             <p class="lead">학생이 의미 있게 배우려면 무엇을 바꿔야 하는가. 학교가 바뀔 때마다 그 질문에서 다시 시작했습니다.</p>
@@ -429,7 +516,7 @@
 
     <section id="contact" class="contact">
       <div class="wrap">
-        <div class="section-no" style="margin-bottom:18px">06 / CONTACT</div>
+        <div class="section-no" style="margin-bottom:18px">07 / CONTACT</div>
         <h2>수업과 도구에 관한<br>새로운 이야기를 기다립니다.</h2>
         <p>교사 연수, 수업 사례 나눔, 교육도구와 콘텐츠 협업에 관한 문의는 이메일이나 전화로 연락해 주세요.</p>
         <div class="buttons">
@@ -463,6 +550,6 @@
       });
     }
   </script>
-  <!-- profile version 1.4.0 -->
+  <!-- GTMC editorial profile v2.0 -->
 </body>
 </html>
